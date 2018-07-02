@@ -2,7 +2,7 @@ title: Lance Wong's blog
 description: > # this means to ignore newlines until "baseurl:"
   New York City based data scientist with a passion for understanding the consumer experience
 permalink: ':title/'
-baseurl: "/flexible-jekyll" # the subpath of your site, e.g. /blog
+baseurl: "/Lance-Wong" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 site-twitter: #if your site has a twitter account, enter it here
 
