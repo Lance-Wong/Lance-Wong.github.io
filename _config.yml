@@ -9,11 +9,10 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: Lance Wong # add your name
 author-img: LanceW.jpg # add your photo
-about-author: I am a data scientist with a passion for understanding the consumer experience. # add description
-social-twitter: # add your Twitter handle
+about-author: I am a New York based data scientist with a passion for understanding the consumer experience. # add description
 social-facebook: # add your Facebook handle
 social-github:  # add your Github handle
-social-linkedin: https://www.linkedin.com/in/lance-wong/ # add your Linkedin handle
+social-linkedin: lance-wong/ # add your Linkedin handle
 social-email: lance.yj.wong@gmail.com
 
 # Disqus
