@@ -58,8 +58,19 @@ Heres a nice t-SNE visualization of all the beers:
 ![beertsne](/assets/img/Beertsne.png)
 
 
-For a t-SNE visualization, interpretation relies on where a topic's position is relative to another. This means:
+For a t-SNE visualization, interpretation relies on where a topic's position is relative to another. This can be interpreted as:
 * Roasted, Sour, and Tropical are the least similar
 * Roasted, Chocolate, and Earthy are fairly similar
 * Piney, Citrus, and Tropical are fairly similar (probably because of all those IPAs!)
 * Citrus is fairly similar to both Tropical and Sour
+
+
+# Building the Recommender
+
+![schema](/assets/img/schema.png)
+
+I first created an content-based recommendation engine using ABV, weighted average score, and the flavor profile distributions from the NMF. A *content-based recommender* is a recommender that leverages the intrinsic characteristics of an object to find other objects similar to it. 
+
+In this case, ABV and flavor are both inherent to a beer. You could argue that weighted average score takes into account a beer's popularity and demand by combining the volume of reviews with the how high the ratings.
+
+After using Manhattan Distances to calculate distances between all beers, I could query for a beer, and get the beers closest to it. However
