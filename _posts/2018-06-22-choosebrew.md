@@ -73,4 +73,9 @@ I first created an content-based recommendation engine using ABV, weighted avera
 
 In this case, ABV and flavor are both inherent to a beer. You could argue that weighted average score takes into account a beer's popularity and demand by combining the volume of reviews with the how high the ratings.
 
-After using Manhattan Distances to calculate distances between all beers, I could query for a beer, and get the beers closest to it. However
+After using Manhattan Distances to calculate distances between all beers, I could query for a beer, and get the beers closest to it. However, since these results are based on beers that are similar by taste, results may not be too exciting or trustworthy.
+
+That's where the the *collaborative filter* comes in. By taking a matrix of beers by user ratings and finding the cosine similarity between all the beers,  I am able to find similar beers that users have enjoyed. And by layering the recommendations from the content-based filter and feeding them into the collaborative filter, I am able to alleviate the cold start problem.
+
+But how do my recommendations from my convoluted content-to-collaborative recommender compare to the original input? By taking the Manhattan Similarity Score (1 / 1 + Manhattan Distance) of the outputs back to the original input, I am able to see how out of the ordinary my recommendations are.
+
