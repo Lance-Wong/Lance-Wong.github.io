@@ -19,7 +19,7 @@ social-email: lance.yj.wong@gmail.com
 discus-identifier:  # add your discus identifier
 
 # Tracker
-analytics: # Google Analytics
+analytics: UA-117584513-2 # Google Analytics
 
 # Build Settings
 markdown: kramdown
