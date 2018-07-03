@@ -14,16 +14,16 @@ ChooseBrew is an application that I built that uses natural language processing 
 
 # Obtaining and Cleaning the data
 
-In order to get started, I needed to find reviews to create my corpus. Using BeerAdvocate.com as my site to scrape, I used BeautifulSoup to scrape metadata and ratings from over 9000 beers.  
+In order to get started, I needed to find reviews to create my corpus. Using BeerAdvocate.com as my site to scrape, I used BeautifulSoup to scrape metadata and ratings from over 9,000 beers.  
 
-After a bit of filtering, I was able to get 9156 beers with 130 ratings or more. This came out to 1.2 million ratings total, but only 25% of the ratings had actual reviews. At the end of the day, my corpus had 311K documents, where each document was a review for a given beer.
+After a bit of filtering, I was able to get 9,156 beers with 130 ratings or more. This came out to 1.2 million ratings total, but only 25% of the ratings had actual reviews. At the end of the day, my corpus had 311K documents, where each document was a review for a given beer.
 
 # TF-IDF
 After lemmatizing my corpus and removing for stopwords, it was time to attempt topic modeling. I turned to TFIDF and Non-negative Matrix Factorization to accomplish this. *CountVectorizer and Latent Dirichlet Allocation were also used, but did not achieve topics as succinct as the former combination.*
 
 Trying to find succinct topics was a very manual process, so heres the workflow in a nutshell:
 >1. Run TFIDF and NMF and print topic words derived from NMF
->2. If topics doesn't make sense,tweak min_df and max_df parameters within TFIDF to pare down fluffy words and unique-but-not-useful words in corpus
+>2. If topics words don't make sense, tweak *min_df* and *max_df* parameters within TFIDF to pare down fluffy words and unique-but-not-useful words in corpus
 >3. Once topics make sense with the given min_df and max_df, play around with the number of topics (n_components) in NMF to find succinct topics.
 
 I ended up with these topics after many iterations:
@@ -42,3 +42,24 @@ Lets assign a label to a topic for human readability:
 >Topic #7: Spiced  
 >Topic #8: Roasted  
 >Topic #9: Sour  
+
+# Assigning a Flavor Profile to a Beer
+Through NMF, I had flavor "weights" for each review, but didn't have the flavor "weights" for the actual beer. To do so, I grouped the reviews by beer and the took the average of all the reviews to get my weights by beer. I then  reexpressed each beer's weights as a probability distribution where the sum of all flavor "probabilities" was equal to 1. Next, I took the index of the highest flavor probability per beer and assigned the corresponding flavor profile to the given beer. 
+
+![flavdist1](/assets/img/flavor1.png)
+
+My beer distribution by flavor profile ended up assigning a significant portion to Topic 2, or **Balance**. While this may be true for a lot of beers, I wanted my recommender to be able to recommend beers that have specific profiles. I went back to the review weights and added a penalty weight to the Balance Topic such that only beers that heavily index towards Balanced will be in the Balanced Flavor Profile. Below is the chart after the penalty weight:
+
+![flavdist2](/assets/img/flavor2.png)
+I'm a little happier with this outcome. Although some flavors dominate the dataset (curse you IPAs!), a given flavor profile still has less than 20% of all the beers.
+
+Heres a nice t-SNE visualization of all the beers:
+
+![beertsne](/assets/img/Beertsne.png)
+
+
+For a t-SNE visualization, interpretation relies on where a topic's position is relative to another. This means:
+* Roasted, Sour, and Tropical are the least similar
+* Roasted, Chocolate, and Earthy are fairly similar
+* Piney, Citrus, and Tropical are fairly similar (probably because of all those IPAs!)
+* Citrus is fairly similar to both Tropical and Sour
