@@ -19,9 +19,26 @@ In order to get started, I needed to find reviews to create my corpus. Using Bee
 After a bit of filtering, I was able to get 9156 beers with 130 ratings or more. This came out to 1.2 million ratings total, but only 25% of the ratings had actual reviews. At the end of the day, my corpus had 311K documents, where each document was a review for a given beer.
 
 # TF-IDF
-After lemmatizing my corpus and removing for stopwords, I used a combination of tuning my TF-IDF Vectorizer and Non-negative Matrix Factorization hyperparameters to find the most succinct topics in my corpus. I relied on *min_df* and *max_df* parameters to pare down the amount of fluffy words (think "beer","hops","drink") and unique-but-not-useful words in my corpus. 
+After lemmatizing my corpus and removing for stopwords, it was time to attempt topic modeling. I turned to TFIDF and Non-negative Matrix Factorization to accomplish this. *CountVectorizer and Latent Dirichlet Allocation were also used, but did not achieve topics as succinct as the former combination.*
 
+Trying to find succinct topics was a very manual process, so heres the workflow in a nutshell:
+>1. Run TFIDF and NMF and print topic words derived from NMF
+>2. If topics doesn't make sense,tweak min_df and max_df parameters within TFIDF to pare down fluffy words and unique-but-not-useful words in corpus
+>3. Once topics make sense with the given min_df and max_df, play around with the number of topics (n_components) in NMF to find succinct topics.
 
-I also played around with the number of topics (n_components) through NMF to make my topics as succinct as possible. I ended up with these topics after many iterations:
+I ended up with these topics after many iterations:
 
 ![flavor profiles](/assets/img/flavors.png)
+
+Lets assign a label to a topic for human readability:
+
+>Topic #0: Yeasty  
+>Topic #1: Citrus  
+>Topic #2: Balance  
+>Topic #3: Chocolatey  
+>Topic #4: Earthy  
+>Topic #5: Tropical    
+>Topic #6: Piney  
+>Topic #7: Spiced  
+>Topic #8: Roasted  
+>Topic #9: Sour  
