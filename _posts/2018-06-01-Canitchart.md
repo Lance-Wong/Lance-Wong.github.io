@@ -5,7 +5,7 @@ description: Discovering potentially promising songs/artists through audio featu
 img: concert.jpeg
 ---
 
-A link to my application can be found [here](http://canitchart.us-east-2.elasticbeanstalk.com/)
+A link to my application can be found [here](http://canitchart.us-east-2.elasticbeanstalk.com/). Type in both the song and its corresponding artist and see how it fares in terms of the Billboard Hot-100. The graph in the center is an index of how each song's audio feature compares to the average Billboard song's audio features. To see how the artist is rated as a whole, click the "artist page" section.
 
 
 # Overview
@@ -53,7 +53,7 @@ There is an inherent trade-off between precision and recall, and while the equil
 
 ![Childish](/assets/img/3_America.png)
 
-I created this project in the beginning of May, around the same time that Childish Gambino's "This is America" came out. My model predicted that this song had an 85% probability that it would chart, and it did so on 5/14/2018 at No. 1 on the Hot-100. Not bad.
+I created this project in the beginning of May, around the same time that Childish Gambino's "This is America" came out. My model predicted that this song had an 85% probability that it would chart, and it did so on [5/14/2018](https://www.billboard.com/articles/columns/chart-beat/8455823/childish-gambino-this-is-america-no-1-hot-100) at No. 1 on the Hot-100. Not bad.
 
 ![Alicia](/assets/img/3_Alicia.png)
 
